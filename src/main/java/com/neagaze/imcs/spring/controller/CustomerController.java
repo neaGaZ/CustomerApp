@@ -35,6 +35,9 @@ public class CustomerController {
     private Customer customer;
 
     @Autowired
+    private DatabaseServiceInterface service;
+
+    @Autowired
     private CustomerValidator customerValidator;
 
     @Autowired
@@ -75,7 +78,6 @@ public class CustomerController {
         System.out.println("the customerId selected is: " + custID);
 
         // check from the OrderLibrary service and retrieve the Customer model
-        DatabaseServiceInterface service = new ConcreteDbService();
         customer = service.getCustomerWithAddress(Integer.parseInt(custID));
 
         System.out.println(customer.getName());
@@ -95,7 +97,6 @@ public class CustomerController {
         ModelAndView modelAndView = new ModelAndView("view-customer");
 
         // check from the OrderLibrary service and retrieve the Customer model
-        DatabaseServiceInterface service = new ConcreteDbService();
         customer = service.getCustomerWithAddress(Integer.parseInt(custID));
 
         System.out.println(customer.getName());
@@ -132,13 +133,12 @@ public class CustomerController {
         System.out.println("New customer created: " + customer);
         System.out.println("New address only: " + customer.getAddress());
 
-        DatabaseServiceInterface service = new ConcreteDbService();
         customer.getAddress().setCustomer(customer);
         service.addCustomer(customer);
         System.out.println("1. The customerId in main.app is: " + customer.getId());
         logger.debug("The customerId in main.app is: " + customer.getId());
 
-        return "redirect:index";
+        return "index";
     }
 
     @RequestMapping(value = "/{customerId}/addPaymentMethod", method = RequestMethod.POST)
@@ -148,7 +148,6 @@ public class CustomerController {
         if (bindingResult.hasErrors())
             System.out.println("payment method binding failed");
 
-        DatabaseServiceInterface service = new ConcreteDbService();
         service.addPayments(Integer.parseInt(customerId), paymentMethod);
 
         System.out.println("New payment method: " + paymentMethod);
@@ -169,7 +168,6 @@ public class CustomerController {
     @RequestMapping(value = "/viewAll", method = RequestMethod.GET)
     public String getAllCustomersPage(Model model) {
 
-        DatabaseServiceInterface service = new ConcreteDbService();
         List<Customer> lists = service.getAllCustomers();
         if(lists != null)
         System.out.println("All customers size: " + lists.size());

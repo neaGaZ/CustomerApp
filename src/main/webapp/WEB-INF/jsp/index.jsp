@@ -42,9 +42,17 @@
 			<th> Customer operations </th>
 		</tr> <br>
 		<tr><td>
-		<input type="button"  value="view-customers" name="View Customer" onclick="onBtnClick(this)">
-		<input type="button"  value="create-customer" name="Create Customer" onclick="onBtnClick(this)">
-		<input type="button"  value="display-customer" name="Display Customer" onclick="onBtnClick(this)">
+			<%--
+			<form action="<%=request.getContextPath()%>/customers/view" method="get">
+		<input type="submit"  value="view-customers" name="View Customer" >
+			</form>
+			<form action="<%=request.getContextPath()%>/customers/create" method="get">
+		<input type="submit"  value="create-customer" name="Create Customer">
+			</form>
+			<form action="<%=request.getContextPath()%>/customers/viewAll" method="get">
+		<input type="submit"  value="display-customer" name="Display Customer">
+			</form>
+			--%>
 		</td></tr>
 		<br>
 
