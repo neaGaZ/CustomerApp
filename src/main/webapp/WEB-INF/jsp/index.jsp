@@ -6,10 +6,10 @@
 	<script type="text/javascript">
 		function onBtnClick(btn) {
 			val = btn.value;
-			alert(val);
+			// alert(val);
 			if  (val == 'view-customers') {
-				document.getElementById('CustomerForm').method='get';
-				document.getElementById('CustomerForm').submit();
+				 document.getElementById('CustomerForm').method='get';
+				 document.getElementById('CustomerForm').submit();
 			}
 			
 			if  (val == 'create-customer') {
@@ -33,7 +33,7 @@
 	
 	<h2>Welcome to the Customers page</h2>
 
-	<form id="CustomerForm" action="<%=request.getContextPath()%>/hello" method="post">
+	<form id="CustomerForm" action="<%=request.getContextPath()%>/customers" method="get">
 
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	<table>
@@ -46,15 +46,16 @@
 		<input type="button"  value="display-customer" name="Display Customer" onclick="onBtnClick(this)">
 		</td></tr>
 		<br>
-		<!--
+
 		<tr>
-			<th> <a href="<%=request.getContextPath()%>/user/"> User Operations (Click Here) </a> </th>
-		</tr>
-		<tr>
-			<th> <a href="<%=request.getContextPath()%>/shopping/"> Shopping Operations (Click Here) </a> </th>
+			<th> <a href="<%=request.getContextPath()%>/customers/view"> View Customers </a> </th>
 		</tr>
 
-		-->
+		<tr>
+			<th> <a href="<%=request.getContextPath()%>/customers/create"> Create Customer </a> </th>
+		</tr>
+
+
 	</table>
 	</form>
 </body>
