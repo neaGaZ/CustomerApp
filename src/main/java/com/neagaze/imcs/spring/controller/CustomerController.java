@@ -116,6 +116,9 @@ public class CustomerController {
         return modelAndView;
     }
 
+    /**
+     *  Create a new Customer
+     *****/
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createCustomerView(Model model) {
         model.addAttribute("customer", new Customer());
@@ -158,4 +161,20 @@ public class CustomerController {
         model.addAttribute("customerId", customerId);
         return "add-payment";
     }
+
+
+    /***
+     * Show all the customers from the database
+     ****/
+    @RequestMapping(value = "/viewAll", method = RequestMethod.GET)
+    public String getAllCustomersPage(Model model) {
+
+        DatabaseServiceInterface service = new ConcreteDbService();
+        List<Customer> lists = service.getAllCustomers();
+        if(lists != null)
+        System.out.println("All customers size: " + lists.size());
+        model.addAttribute("customersList", lists);
+        return "customers-list-view";
+    }
+
 }

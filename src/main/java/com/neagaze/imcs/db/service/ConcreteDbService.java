@@ -57,4 +57,10 @@ public class ConcreteDbService implements DatabaseServiceInterface {
         PaymentMethodDao pdao = new ConcretePaymentMethodDao();
         return pdao.deletePaymentMethods(customerId);
     }
+
+    @Override
+    public List<Customer> getAllCustomers() {
+        CustomerDao dao = new ConcreteCustomerDao();
+        return dao.fetchAllCustomers();
+    }
 }

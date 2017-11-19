@@ -18,9 +18,10 @@
 			}
 			
 			if  (val == 'display-customer') {
-				document.getElementById('CustomerForm').method='get';
-				document.getElementById('CustomerForm').action = document.getElementById('CustomerForm').action + "/greetings/Anas/phone/9039398334";
-				document.getElementById('CustomerForm').submit();
+			    var dom = document.getElementById('CustomerForm');
+				dom.method='get';
+				//dom.action = dom.action +
+				dom.submit();
 			}
 		}
 	</script>
@@ -55,6 +56,9 @@
 			<th> <a href="<%=request.getContextPath()%>/customers/create"> Create Customer </a> </th>
 		</tr>
 
+		<tr>
+			<th> <a href="<%=request.getContextPath()%>/customers/viewAll"> Shows All Customers </a> </th>
+		</tr>
 
 	</table>
 	</form>

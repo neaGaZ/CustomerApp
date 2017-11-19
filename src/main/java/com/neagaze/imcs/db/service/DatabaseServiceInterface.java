@@ -26,4 +26,6 @@ public interface DatabaseServiceInterface {
     PaymentMethod updatePaymentMethod(PaymentMethod paymentMethod);
 
     Integer deletePaymentMethods(Integer customerId);
+
+    List<Customer> getAllCustomers();
 }

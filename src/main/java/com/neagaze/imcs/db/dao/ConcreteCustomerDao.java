@@ -1,12 +1,16 @@
 package com.neagaze.imcs.db.dao;
 
 import com.neagaze.imcs.db.entities.Customer;
+import com.neagaze.imcs.db.entities.PaymentMethod;
 import com.neagaze.imcs.db.util.HibernateUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by neaGaze on 11/9/17.
@@ -74,5 +78,19 @@ public class ConcreteCustomerDao implements CustomerDao {
         session.close();
         System.out.println("Deleted Customer id: " + c.getId());
         logger.debug("Deleted Customer id: " + c.getId());
+    }
+
+    @Override
+    public List<Customer> fetchAllCustomers() {
+        SessionFactory factory = HibernateUtils.getFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Query q = session.createQuery("FROM Customer");
+
+        List<Customer> customersList =  (ArrayList<Customer>) q.list();
+        transaction.commit();
+        session.close();
+
+        return customersList;
     }
 }
